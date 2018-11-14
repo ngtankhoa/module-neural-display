@@ -1,0 +1,54 @@
+{
+    "vi": {
+        "leftTxt":"Số thứ tự tiếp theo",
+        "rightTxt":"Menu bảng giá",
+        "menu":[
+            {
+                "name":"Loại vé",
+                "weekday":"Ngày thường",
+                "holiday":"T7, CN và ngày lễ"
+            },
+            {
+                "name":"người lớn",
+                "weekday":"55000",
+                "holiday":"70000"
+            },
+            {
+              "name"  :"trẻ em",
+              "weekday":"35000",
+              "holiday":"50000"
+            },
+            {
+                "name":"người khuyết tật",
+                "weekday":"35000",
+                "holiday":"50000"
+            }
+        ]
+    },
+    "en": {
+        "leftTxt":"Next number",
+        "rightTxt":"Menu price",
+        "menu":[
+            {
+                "name":"Ticket type",
+                "weekday":"Weekday",
+                "holiday":"Weekend and holiday"
+            },
+            {
+                "name":"Adult",
+                "weekday":"55000",
+                "holiday":"70000"
+            },
+            {
+              "name"  :"Children",
+              "weekday":"35000",
+              "holiday":"50000"
+            },
+            {
+                "name":"Disable",
+                "weekday":"35000",
+                "holiday":"50000"
+            }
+        ]
+    }
+}

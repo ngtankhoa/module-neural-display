@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/slider/app.css"> -->
+    <!-- <script src="assets/slider/app.js"></script> -->
+    <title>Slider</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+
+        .wrapper {
+            height: 100vh;
+            width: 100vw;
+            font-size: 4vh;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* make scrollbar invisible */
+        ::-webkit-scrollbar {
+            display:none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="slide">
+            <!-- <img src="assets/img/1.jpg" alt=""> -->
+            <img src="assets/img/1.jpg" alt="">
+        </div>
+
+        <div class="slide">
+            <img src="assets/img/2.jpg" alt="">
+        </div>
+
+        <div class="slide">
+            <video width="1920" height="1080" id="vid1">
+                <source src="assets/img/video1.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ phát video này
+            </video>
+        </div>
+
+        <div class="slide">
+            <img src="assets/img/3.jpg" alt="">
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var slideIndex = 0;
+            var duration = 0;
+            var pauseTime = 3000;
+            var $slide = $(".slide");
+            // var video = $("#vid1");
+
+            showSlides();
+
+            function showSlides() {
+                var i;
+                for (i = 0; i < $slide.length; i++) {
+                    $slide.eq(i).css("display", "none");
+                    // $slide.eq(slideIndex).css("display", "none");
+                }
+                slideIndex++;
+                if (slideIndex > $slide.length) { slideIndex = 1 }
+                $slide.eq(slideIndex - 1).css("display", "block");
+                if ($slide.eq(slideIndex - 1).children().is("video")) {
+                    var vid = $slide.eq(slideIndex - 1).children()[0];
+                    vid.play();
+                    duration = vid.duration * 1000;
+                } else {
+                    duration = 0;
+                }
+                console.log(pauseTime + duration);
+                setTimeout(showSlides, pauseTime + duration);
+            }
+        });
+    </script>
+</body>
+
+</html>

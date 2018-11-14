@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/ticketPrice1/app.css"> -->
+    <title>Ticket Price</title>
+    <style>
+        /* CSS for testing */
+        .test1 {
+            border: 1px solid black;
+        }
+
+        .test2 {
+            border: 1px solid lightcoral;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            height: 100vh;
+            width: 100vw;
+            font-size: 6vh;
+        }
+
+        .side {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper div {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            font-size: 4vh;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div style="flex: 33.3%;" class="side">
+            <div>
+                <p class="number">Số thứ tự tiếp theo</p>
+                <div id="io_data">11 - 14</div>
+            </div>
+
+        </div>
+        <div style="flex: 66.7%;" class="">
+            <p class="menu">Menu bảng giá</p>
+            <table>
+                <tr>
+                    <th id="type">Loại vé</th>
+                    <th id="weekday">Ngày thường</th>
+                    <th id="holiday">T7, CN và lễ tết</th>
+                </tr>
+                <tr>
+                    <td>Người lớn</td>
+                    <td>cột 2</td>
+                    <td>cột 3</td>
+                </tr>
+                <tr>
+                    <td>Trẻ em</td>
+                    <td>cot 2</td>
+                    <td>cot 3</td>
+                </tr>
+                <tr>
+                    <td>Người khuyến tật</td>
+                    <td>cot 2</td>
+                    <td>cot 3</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // get JSON data for Menu Price
+            $.getJSON("https://5be68e5a48c1280013fc3e98.mockapi.io/api/v1/ticketPrice", function (result, statusCode) {
+                $(".number").text(result[0].en.leftTxt.toString());
+                $(".menu").text(result[0].en.rightTxt.toString());
+                $("#type").text(result[0].en.menu[0].name.toString());
+                $("#weekday").text(result[0].en.menu[0].weekday.toString());
+                $("#holiday").text(result[0].en.menu[0].holiday.toString());
+            });
+
+            // get data for left column
+            var socket = io();
+            socket.on('left column data', function (data) {
+                $("#io_data").text(data);
+            });
+        });
+    </script>
+</body>
+
+</html>

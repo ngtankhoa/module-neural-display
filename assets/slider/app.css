@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    font-size: 4vh;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+/* make scrollbar invisible */
+::-webkit-scrollbar {
+    display:none;
+  }

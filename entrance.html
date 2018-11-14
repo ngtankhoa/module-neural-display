@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/entrance/app.css"> -->
+    <title>Entrance</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 100vh;
+            width: 100vw;
+            font-size: 4vh;
+        }
+
+        .wrapper div {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div>
+            Số lượng
+            <div id="amount">90/200</div>
+        </div>
+        <div>
+            Mời quý khách có số thứ tự từ
+            <div id="number"> 14 - 21 </div>
+            vào sảnh
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // get data for left column
+            var socket = io();
+            socket.on('top entrance data', function (data) {
+                $("#number").text(data);
+            });
+            socket.on('bottom entrance data', function(data){
+                $("#amount").text(data);
+            });
+        });
+    </script>
+</body>
+
+</html>
